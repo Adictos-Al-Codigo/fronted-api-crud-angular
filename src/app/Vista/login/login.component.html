@@ -49,6 +49,9 @@
 								<div class="form-group">
 									<button type="submit" class="btn btn-lg btn-success btn-block submit" id="login_m">Iniciar Sesión</button>
 								</div>
+								<div class="alert alert-danger" *ngIf="errorStatus"> 
+									<span>{{errorMsj}}</span>
+								</div>
 							</div>
 						</div>
 					<!-- <a href="#" onClick="">I forgot my password!</a> -->

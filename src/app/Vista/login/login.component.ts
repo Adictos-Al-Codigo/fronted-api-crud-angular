@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit{
     email : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required)
   })
+
+  errorStatus?:boolean;
+  errorMsj?:any;
+
   constructor(private apiService:ApiService,private router:Router){
 
   }
@@ -24,11 +28,16 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin(form:any){
-    this.apiService.loginByEmail(form).subscribe(data =>{
-      let dataResponse:ResponseI = data;
-      if (dataResponse.status == "ok") {
+    this.apiService.loginByEmail(form).subscribe({
+      next: (s) =>{
+        let dataResponse:ResponseI = s;
         localStorage.setItem("token",dataResponse.accesToken);
         this.router.navigate(['Dashboard']);
+      },
+      error: (err) =>{
+        this.errorStatus = true;
+        this.errorMsj = "Credenciales Inválidas"
+        debugger;
       }
     })
   }
