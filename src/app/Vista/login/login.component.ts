@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
-import { ApiService } from 'src/app/Servicios/api/api.service';
-import {LoginI} from '../../Modelos/login.interface';
 import {ResponseI} from '../../Modelos/response.interface';
 import {Router} from '@angular/router'
+import { ApiService } from 'src/app/Servicios/api/api.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +23,14 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(){
+    this.checkLocalStorage();
+  }
 
+  checkLocalStorage(){
+    if (localStorage.getItem("token")) {
+      this.router.navigate(['Dashboard']);
+      debugger;
+    }
   }
 
   onLogin(form:any){
