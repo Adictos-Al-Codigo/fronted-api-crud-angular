@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {LoginI} from '../../Modelos/login.interface';
 import {ResponseI} from '../../Modelos/response.interface';
-import {ListaUserI} from '../../Modelos/lista_users.interface';
+import { ListaUserI } from 'src/app/Modelos/lista_users.interface';
 import {Observable} from 'rxjs'
 
 @Injectable({
