@@ -11,7 +11,7 @@
 					<strong>Súper Compra</strong>
 				</div>
 				<div class="card-body">
-					<form name="login" id="login">
+					<form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" name="login" id="login">
 						<div class="row">
 							<div class="col">
 								<span class="profile-img">
@@ -33,7 +33,7 @@
 												<i class='fas fa-user-shield'></i>
 											</span>
 										</div>
-										<input class="form-control" placeholder="Correo Eletrónico" id="loginEmail" name="loginEmail" type="email" autofocus>
+										<input class="form-control" placeholder="Correo Eletrónico" id="loginEmail" formControlName="email" type="email" autofocus>
 									</div>
 								</div>
 								<div class="form-group">
@@ -43,11 +43,11 @@
 												<i class='fas fa-user-secret'></i>
 											</span>
 										</div>
-										<input class="form-control" placeholder="Contraseña" id="loginPassword" name="loginPassword" type="password">
+										<input class="form-control" placeholder="Contraseña" formControlName="password" id="loginPassword" type="password">
 									</div>
 								</div>
 								<div class="form-group">
-									<input type="button" class="btn btn-lg btn-success btn-block submit" id="login_m"  value="Iniciar Sesión">
+									<button type="submit" class="btn btn-lg btn-success btn-block submit" id="login_m">Inciar Sesión</button>
 								</div>
 							</div>
 						</div>
