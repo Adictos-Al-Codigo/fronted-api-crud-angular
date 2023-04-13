@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
 import { ApiService } from 'src/app/Servicios/api/api.service';
-import {LoginI} from '../../Modelos/login.interface'
+import {LoginI} from '../../Modelos/login.interface';
+import {ResponseI} from '../../Modelos/response.interface';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit{
     email : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required)
   })
-  constructor(private apiService:ApiService){
+  constructor(private apiService:ApiService,private router:Router){
 
   }
 
@@ -23,7 +25,11 @@ export class LoginComponent implements OnInit{
 
   onLogin(form:any){
     this.apiService.loginByEmail(form).subscribe(data =>{
-      console.log(data);
+      let dataResponse:ResponseI = data;
+      if (dataResponse.status == "ok") {
+        localStorage.setItem("token",dataResponse.accesToken);
+        this.router.navigate(['Dashboard']);
+      }
     })
   }
 }
