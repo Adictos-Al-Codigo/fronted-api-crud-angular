@@ -5,8 +5,10 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Plantillas/header/header.component';
 import { FooterComponent } from './Plantillas/footer/footer.component';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms'
-import {HttpClientModule} from '@angular/common/http'
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
+import { InterceptorsService } from './interceptor/token.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,9 +21,16 @@ import {HttpClientModule} from '@angular/common/http'
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorsService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

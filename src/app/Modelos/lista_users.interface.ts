@@ -1,7 +1,9 @@
 export interface ListaUserI{
+    id:number;
     url_imagen:string;
     name:string;
     email:string;
-    id_tipo_usuario:number;
+    password:string;
+    tipo:string;
     estado:boolean;
 }

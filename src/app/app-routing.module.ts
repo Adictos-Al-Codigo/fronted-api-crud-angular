@@ -22,7 +22,7 @@ const routes: Routes = [
     component: NuevoComponent
   },
   {
-    path: 'Editar',
+    path: 'Editar/:id',
     component: EditarComponent
   }
 ];
