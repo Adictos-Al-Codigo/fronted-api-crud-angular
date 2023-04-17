@@ -1,1 +1,62 @@
-<p>nuevo works!</p>
+<app-header></app-header>
+
+<div id="container">
+    <form action="" class="container__form" [formGroup]="form">
+        <div class="row">
+            <div class="col-12 margen-in d-flex justify-content-center">
+                <input class="d-none" #imageInput type="file" (change)="obtenerFoto($event)">
+                <!-- class="d-none" para que desaparesca -->
+                <img (click)="imageInput.click()" style="max-width:10rem; max-height: 10rem; overflow: hidden;"
+                    [src]="fileSelect|| '../../../assets/img/no-image.png'" alt="Imagen producto.">
+            </div>
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" placeholder="Nombre del usuario" formControlName="name" />
+            </div>
+            <div class="alert alert-danger" role="alert"
+                *ngIf="form.get('name')?.touched && form.get('name')?.errors?.['required']">
+                Campo requerido
+            </div>
+
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" placeholder="Correo" formControlName="email" />
+            </div>
+            <div class="alert alert-danger" role="alert"
+                *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required']">
+                Campo requerido
+            </div>
+
+
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" placeholder="Contraseña" formControlName="password" />
+            </div>
+            <div class="alert alert-danger" role="alert"
+                *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']">
+                Campo requerido
+            </div>
+
+
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" placeholder="Tipo" formControlName="id_tipo_usuario" />
+            </div>
+            <div class="alert alert-danger" role="alert"
+                *ngIf="form.get('id_tipo_usuario')?.touched && form.get('id_tipo_usuario')?.errors?.['required']">
+                Campo requerido
+            </div>
+        </div>
+        <button class="btn btn-danger" (click)="guardar()">Guardar Usuario</button>
+    </form>
+
+</div>
+
+
+
+
+<!-- <app-footer></app-footer> -->

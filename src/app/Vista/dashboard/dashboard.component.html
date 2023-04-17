@@ -1,5 +1,31 @@
 <app-header></app-header>
+<div id="container">
+    <table class="table table-bordered border border-white">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Correo Electrónico</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of ListaUsers">
+            <th scope="row">{{item.id}}</th>
+            <td><img width="100px" height="100px" src="http://127.0.0.1:8000/storage/imagenes/usuarios/{{item.id}}/{{item.url_imagen}}"></td>
+            <td>{{item.email}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.tipo}}</td>
+            <td>
+                <a  (click)="editarUsuario(item.id)"><i class="bi bi-pencil-square"></i></a>
+                <a (click)="eliminarUsuario(item.id)"><i class="bi bi-trash3-fill"></i></a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
 
-
-
+    <button class="btn btn-primary" (click)="agregarUsuario()">Registrar Usuario</button>
+</div>
 <app-footer></app-footer>

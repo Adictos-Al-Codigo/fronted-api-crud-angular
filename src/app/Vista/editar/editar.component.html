@@ -1,1 +1,32 @@
-<p>editar works!</p>
+<app-header></app-header>
+    <div class="container">
+        <form [formGroup]="editarForm" class="container__form">
+            <div class="card-body p-8 text-center">
+        
+              <div class="mb-md-5 mt-md-4 pb-4">
+        
+                <h2 class="fw-bold mb-2 text-uppercase">Actualizar Usuario</h2>
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">Nombre de Usuario </label>
+                  <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="name" />
+                </div>
+      
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">Correo Electrónico</label>
+                  <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="email" />
+                </div>
+      
+                
+                <div class="form-outline form-white mb-4"  >
+                  <label class="form-label" for="typeEmailX">Rol</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="id_tipo_usuario">
+                     <option *ngFor="let item of tipoUser" value="{{item.id}}"> {{item.tipo}} </option>
+                  </select>
+                </div>
+                <button class="btn btn-outline-primary btn-lg px-5" type="registrar" (click)="update(editarForm.value)">Actualizar</button>
+    
+              </div>
+            </div>
+          </form>
+    </div>
+<app-footer></app-footer>

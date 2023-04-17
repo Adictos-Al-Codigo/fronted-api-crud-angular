@@ -7,3 +7,9 @@ footer {
     color: white;
     text-align: center;
 }
+
+footer small{
+    position: relative;
+    top: 30px;
+    font-size: 1rem;
+}

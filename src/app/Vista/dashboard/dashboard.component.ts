@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/Servicios/api/api.service';
-
+import {Router} from '@angular/router';
+import {ListaUserI} from '../../Modelos/lista_users.interface'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -8,23 +9,34 @@ import { ApiService } from 'src/app/Servicios/api/api.service';
 })
 export class DashboardComponent implements OnInit{
 
-  ListaUsers:any;
+  ListaUsers!:ListaUserI[];
   token:any;
 
-  constructor(private apiService:ApiService) {
+  constructor(private apiService:ApiService, private route:Router) {
     
   }
 
   ngOnInit(): void {
-    
     this.apiService.get_All_users().subscribe({
       next: (s) =>{
-
-        console.log(s);
+        this.ListaUsers = s;
       },
       error: (err) =>{
         debugger;
       }
     })
+  }
+
+  editarUsuario(id:number){
+    this.route.navigate(['Editar',id]);
+  }
+
+  agregarUsuario(){
+    this.route.navigate(['Nuevo'])
+  }
+
+  eliminarUsuario(id:number){
+    this.apiService.eliminarUsuario(id).subscribe();
+    this.route.navigate(['Login']);
   }
 }
